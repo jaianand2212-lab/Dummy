@@ -69,10 +69,11 @@ Go to: https://github.com/jaianand2212-lab/Dummy/settings/secrets/actions
 ---
 
 ## Step 4: Test Email Configuration Locally
+##dummy
 
 You can test if your email credentials work before using them in GitHub Actions:
 
-### Quick Python Test:
+### Quick Python Test::
 ```python
 import smtplib
 from email.mime.text import MIMEText
