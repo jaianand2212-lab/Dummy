@@ -175,7 +175,7 @@ class EventHandler:
         # Calculate efficiency
         if work_order.start_time:
             actual_duration = (work_order.completion_time - work_order.start_time).seconds / 60
-            
+         #dummy   
             if actual_duration > 0:
                 efficiency = (work_order.estimated_duration / actual_duration) * 100
             else:
