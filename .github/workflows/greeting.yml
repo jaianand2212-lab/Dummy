@@ -45,9 +45,8 @@ jobs:
           
           # Email details
           subject: "✅ Code Successfully Pushed to ${{ github.repository }}"
-          to: ${{ secrets.EMAIL_TO }},${{ secrets.EMAIL_TO_SECONDARY }}
+          to: ${{ secrets.EMAIL_TO }}
           from: GitHub Actions <noreply@github.com>
-          cc: ${{ secrets.EMAIL_CC }}  # Optional CC recipients
           
           # Email body (HTML format)
           html_body: |
