@@ -8,7 +8,7 @@ To receive automatic greeting emails after pushing code, you need to set up GitH
 
 1. Go to your repository: https://github.com/jaianand2212-lab/Dummy
 2. Click on **Settings** → **Secrets and variables** → **Actions**
-3. Click **New repository secret** and add the following three secrets:
+3. Click **New repository secret** and add the following secrets:
 
 #### Secret 1: EMAIL_USERNAME
 - **Name**: `EMAIL_USERNAME`
@@ -18,9 +18,18 @@ To receive automatic greeting emails after pushing code, you need to set up GitH
 - **Name**: `EMAIL_PASSWORD`
 - **Value**: Your email app password (see instructions below)
 
-#### Secret 3: EMAIL_TO
+#### Secret 3: EMAIL_TO (Primary Email)
 - **Name**: `EMAIL_TO`
-- **Value**: Email address where you want to receive notifications (e.g., `jan5cob@bosch.com`)
+- **Value**: Primary email address (e.g., `jan5cob@bosch.com`)
+
+#### Secret 4: EMAIL_TO_SECONDARY (Secondary Email)
+- **Name**: `EMAIL_TO_SECONDARY`
+- **Value**: Secondary email address (e.g., `your-personal@gmail.com`)
+
+#### Secret 5: EMAIL_CC (Optional - CC Recipients)
+- **Name**: `EMAIL_CC`
+- **Value**: Additional email addresses for CC (e.g., `manager@bosch.com,team@bosch.com`)
+- **Note**: Leave empty if not needed, separate multiple emails with commas
 
 ### Step 2: Generate Gmail App Password (if using Gmail)
 
@@ -50,7 +59,9 @@ server_port: 587
 Then set secrets:
 - `EMAIL_USERNAME`: Your Bosch email (e.g., `jan5cob@bosch.com`)
 - `EMAIL_PASSWORD`: Your Bosch email password or app password
-- `EMAIL_TO`: Your email address
+- `EMAIL_TO`: Primary email address (e.g., `jan5cob@bosch.com`)
+- `EMAIL_TO_SECONDARY`: Secondary email address (e.g., `yourpersonal@gmail.com`)
+- `EMAIL_CC`: (Optional) Additional CC recipients, comma-separated
 
 ### Step 4: Test the Setup
 
@@ -87,6 +98,53 @@ You will receive a beautiful HTML email with:
 - **Yahoo**: `smtp.mail.yahoo.com:465`
 - **Outlook**: `smtp.office365.com:587`
 - **Custom SMTP**: Update server_address and server_port accordingly
+
+---
+
+## 📧 Email Recipients Configuration
+
+### Multiple Recipients Setup:
+
+The workflow now supports sending emails to multiple recipients:
+
+1. **Primary Recipient (`EMAIL_TO`)**: Main email address
+2. **Secondary Recipient (`EMAIL_TO_SECONDARY`)**: Additional email address  
+3. **CC Recipients (`EMAIL_CC`)**: Optional carbon copy recipients
+
+### Example Configuration:
+
+```
+EMAIL_TO = jan5cob@bosch.com
+EMAIL_TO_SECONDARY = yourpersonal@gmail.com
+EMAIL_CC = manager@bosch.com,team-lead@bosch.com
+```
+
+**Result**: Email will be sent to:
+- **To**: jan5cob@bosch.com, yourpersonal@gmail.com
+- **CC**: manager@bosch.com, team-lead@bosch.com
+
+### Quick Setup Examples:
+
+#### Example 1: Send to Work and Personal Email
+```
+EMAIL_TO = jan5cob@bosch.com
+EMAIL_TO_SECONDARY = mypersonal@gmail.com
+EMAIL_CC = (leave empty)
+```
+
+#### Example 2: Include Manager in CC
+```
+EMAIL_TO = jan5cob@bosch.com
+EMAIL_TO_SECONDARY = mypersonal@gmail.com
+EMAIL_CC = my.manager@bosch.com
+```
+
+#### Example 3: Multiple CC Recipients
+```
+EMAIL_TO = jan5cob@bosch.com
+EMAIL_TO_SECONDARY = backup@gmail.com
+EMAIL_CC = manager@bosch.com,teamlead@bosch.com,colleague@bosch.com
+```
 
 ---
 
