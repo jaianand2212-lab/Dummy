@@ -1,0 +1,39 @@
+name: Greeting on Push
+
+# Trigger: Run this workflow when code is pushed to any branch
+on:
+  push:
+    branches:
+      - '**'  # Triggers on push to any branch
+
+jobs:
+  send-greeting:
+    name: Send Greeting Message
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # Step 2: Display greeting message
+      - name: Send Greeting
+        run: |
+          echo "=================================================="
+          echo "🎉 Greetings, you have successfully pushed the code!"
+          echo "=================================================="
+          echo ""
+          echo "📋 Push Details:"
+          echo "  Repository: ${{ github.repository }}"
+          echo "  Branch: ${{ github.ref_name }}"
+          echo "  Commit: ${{ github.sha }}"
+          echo "  Author: ${{ github.actor }}"
+          echo "  Message: ${{ github.event.head_commit.message }}"
+          echo ""
+          echo "✅ Workflow completed successfully!"
+          echo "=================================================="
+      
+      # Step 3: Create a success notification (optional)
+      - name: Post Success Status
+        run: |
+          echo "::notice::Greetings! Code push was successful for commit ${{ github.sha }}"
